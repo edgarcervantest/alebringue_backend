@@ -19,9 +19,9 @@ RUN npm ci
 # Copiamos los archivos compilados y configuraciones
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
-COPY --from=builder /app/src/drizzle ./src/drizzle
+COPY --from=builder /app/src ./src
 
 EXPOSE 8000
 
 # Ejecutamos la migración usando el binario local instalado, seguido de la app
-CMD ["sh", "-c", "./node_modules/.bin/drizzle-kit migrate && node dist/Index.js"]
+CMD ["sh", "-c", "./node_modules/.bin/drizzle-kit push && node dist/Index.js"]

@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx nodemon"
+    "dev": "tsx watch src/Index.ts",
+    "build": "tsc",
+    "start": "node dist/Index.js"
   },
   "keywords": [],
   "author": "",

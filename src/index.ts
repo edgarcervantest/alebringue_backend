@@ -11,9 +11,11 @@ app.use(express.json());
 app.use("/auth",authRouter);
 
 app.get("/", (req, res) => {
-    res.send("Bienvenido a la Apps amigo");
+    res.send("Bienvenido a la app");
 });
 
-app.listen(8000, '0.0.0.0', () => {
-    console.log("Server corriendo http://localhost:8000");
+const PORT = process.env.PORT || 8000
+
+app.listen(Number(PORT), '0.0.0.0', () => {
+    console.log("Servidor corriendo en puerto ${PORT}");
 });

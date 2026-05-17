@@ -14,13 +14,14 @@ ENV NODE_ENV=production
 
 COPY package*.json ./
 # Instala solo las dependencias necesarias para ejecutar la app (sin devDependencies)
-RUN npm ci --only=production
+RUN npm ci
 
-# Copia los archivos compilados desde la etapa anterior
+# Copiamos los archivos compilados y configuraciones
 COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
+COPY --from=builder /app/src/drizzle ./src/drizzle
 
-# Render pasará dinámicamente el PORT, pero dejamos una referencia orientativa
 EXPOSE 8000
 
-# Ejecuta el archivo JavaScript compilado
-CMD ["sh", "-c", "npx drizzle-kit push && node dist/Index.js"]
+# Ejecutamos la migración usando el binario local instalado, seguido de la app
+CMD ["sh", "-c", "./node_modules/.bin/drizzle-kit migrate && node dist/Index.js"]

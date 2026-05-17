@@ -10,6 +10,10 @@ export default defineConfig({
   dialect: "postgresql",
   schema: "./src/db/schema.ts",
   out: "./src/migrations",
+  migrations: {
+    schema: "public", // Le dice a Drizzle que no cree un esquema nuevo, que use public
+    table: "__drizzle_migrations__" // Nombre de la tabla de control
+  },
   dbCredentials: {
     url: process.env.DATABASE_URL,
     ssl: false

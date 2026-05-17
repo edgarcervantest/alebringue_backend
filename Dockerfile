@@ -19,7 +19,7 @@ RUN npm ci
 # Copiamos los archivos compilados y configuraciones
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/drizzle.config.ts ./drizzle.config.ts
-COPY --from=builder /app/src ./src
+COPY --from=builder /app/src/drizzle ./src/drizzle
 
 EXPOSE 8000
 

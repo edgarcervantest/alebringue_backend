@@ -23,4 +23,4 @@ COPY --from=builder /app/src/migrations ./src/migrations
 
 EXPOSE 8000
 # Ejecutamos la migración usando el binario local instalado, seguido de la app
-CMD ["sh", "-c", "./node_modules/.bin/drizzle-kit migrate && node dist/Index.js"]
+CMD ["sh", "-c", "./node_modules/.bin/drizzle-kit migrate && node dist/index.js"]

@@ -50,6 +50,7 @@ export const words = pgTable("words", {
   id: serial("id").primaryKey(),
   word: text("word").notNull(),
   translation: text("translation").notNull(),
+  pronunciation: text("pronunciation").notNull(),
   audioPath: text("audio_path"),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),
